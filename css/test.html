@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, form, input, button, textarea, p, th, tr, td, span, a, i, s, em {
+            margin: 0;
+            padding: 0;
+            font-family: "Hiragino Sans GB", "microsoft yahei", "Tahoma,arial", "宋体", "sans-serif";
+            font-size: 12px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #404040;
+            cursor: pointer;
+        }
+
+        img {
+            border: none;
+        }
+
+        .clear:before, .clear:after {
+            display: block;
+            content: "";
+            clear: both;
+        }
+
+        .show_city {
+            float: left;
+            -display: none;
+            position: absolute;
+            width: 512px;
+            z-index: 9;
+            height: auto;
+            -moz-box-shadow: 3px 3px 4px #c7c6c6;
+            -webkit-box-shadow: 3px 3px 4px #c7c6c6;
+            box-shadow: 3px 3px 4px #c7c6c6;
+            padding-bottom: 10px;
+        }
+
+        .show_city a {
+            font-size: 12px;
+        }
+
+        .show_city .city_con {
+            padding: 0 10px;
+        }
+
+        .show_city .tags {
+            position: relative;
+            width: 492px;
+            height: 20px;
+            padding-right: 0;
+            padding-top: 12px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #dedede;
+        }
+
+        .show_city .tags li {
+            list-style: none;
+            float: left;
+            height: 15px;
+            padding: 4px 10px 4px 10px;
+            border-top: 2px solid transparent;
+            border-left: 1px solid transparent;
+            border-right: 1px solid transparent;
+            border-bottom: 1px solid #dedede;
+        }
+
+        .show_city .tags li a {
+            color: #666;
+        }
+
+        .show_city .tags .liTag {
+            border-top: 2px solid #f80;
+            border-left: 1px solid #dedede;
+            border-right: 1px solid #dedede;
+            border-bottom: 1px solid white;
+        }
+
+        .show_city .tagContent {
+            display: none;
+            position: relative;
+            width: 492px;
+            height: auto;
+        }
+
+        .show_city .line {
+            padding-top: 7px;
+        }
+
+        .show_city .line .line_left {
+            width: 35px;
+            float: left;
+            font-size: 12px;
+            color: #999;
+            line-height: 18px;
+            padding-top: 4px;
+            padding-left: 12px;
+        }
+
+        .show_city .line .line_right {
+            width: 443px;
+            float: left;
+        }
+
+        .show_city .line .line_right a {
+            display: block;
+            float: left;
+            color: #666;
+            margin-right: 15px;
+            line-height: 25px;
+            white-space: nowrap;
+        }
+
+        .show_city .selectTag {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div id="header_center">
+    <div class="show_city">
+        <div id="con" class="city_con">
+            <ul id="tags" class="tags clear">
+                <li class="liTag"><a href='javascript:void 0'>热门城市</a></li>
+                <li class=""><a href='javascript:void 0'>ABCDEFG</a></li>
+                <li class=""><a href='javascript:void 0'>HJKLMN</a></li>
+                <li class=""><a href='javascript:void 0'>PQRST</a></li>
+                <li class=""><a href='javascript:void 0'>WXYZ</a></li>
+            </ul>
+            <div class="tagContent selectTag">
+                <div class="line">
+                    <div class="line_left">华北</div>
+                    <div class="line_right">
+                        <a href='javascript:void 0'>北京</a><a href='javascript:void 0'>天津</a><a
+                            href='javascript:void 0'>济南</a><a href='javascript:void 0'>青岛</a><a
+                            href='javascript:void 0'>包头</a><a href='javascript:void 0'>石家庄</a><a
+                            href='javascript:void 0'>太原</a><a href='javascript:void 0'>呼和浩特</a><a
+                            href='javascript:void 0'>唐山</a><a href='javascript:void 0'>大同</a><a
+                            href='javascript:void 0'>运城</a><a href='javascript:void 0'>保定</a><a
+                            href='javascript:void 0'>秦皇岛</a><a href='javascript:void 0'>潍坊</a><a
+                            href='javascript:void 0'>张家口</a><a href='javascript:void 0'>长治</a><a
+                            href='javascript:void 0'>临沂</a><a href='javascript:void 0'>烟台</a><a
+                            href='javascript:void 0'>淄博</a><a href='javascript:void 0'>沧州</a><a
+                            href='javascript:void 0'>东营</a><a href='javascript:void 0'>济宁</a><a
+                            href='javascript:void 0'>威海</a><a href='javascript:void 0'>邯郸</a><a
+                            href='javascript:void 0'>泰安</a><a href='javascript:void 0'>聊城</a><a
+                            href='javascript:void 0'>枣庄</a><a href='javascript:void 0'>菏泽</a><a
+                            href='javascript:void 0'>临汾</a><a href='javascript:void 0'>日照</a><a
+                            href='javascript:void 0'>晋城</a><a href='javascript:void 0'>承德</a>
+                    </div>
+                </div>
+                <div class="line">
+                    <div class="line_left">华东</div>
+                    <div class="line_right">
+                        <a href='javascript:void 0'>上海</a> <a href='javascript:void 0'>南京</a><a
+                            href='javascript:void 0'>杭州</a><a href='javascript:void 0'>苏州</a><a
+                            href='javascript:void 0'>宁波</a><a href='javascript:void 0'>无锡</a><a
+                            href='javascript:void 0'>福州</a><a href='javascript:void 0'>合肥</a><a
+                            href='javascript:void 0'>厦门</a><a href='javascript:void 0'>泉州</a><a
+                            href='javascript:void 0'>常州</a><a href='javascript:void 0'>金华</a><a
+                            href='javascript:void 0'>蚌埠</a><a href='javascript:void 0'>徐州</a><a
+                            href='javascript:void 0'>绍兴</a><a href='javascript:void 0'>温州</a><a
+                            href='javascript:void 0'>芜湖</a><a href='javascript:void 0'>扬州</a><a
+                            href='javascript:void 0'>南通</a><a href='javascript:void 0'>嘉兴</a><a
+                            href='javascript:void 0'>盐城</a><a href='javascript:void 0'>阜阳</a><a
+                            href='javascript:void 0'>安庆</a><a href='javascript:void 0'>漳州</a><a
+                            href='javascript:void 0'>台州</a><a href='javascript:void 0'>淮南</a><a
+                            href='javascript:void 0'>马鞍山</a><a href='javascript:void 0'>莆田</a><a
+                            href='javascript:void 0'>宁德</a><a href='javascript:void 0'>泰州</a><a
+                            href='javascript:void 0'>淮安</a><a href='javascript:void 0'>湖州</a><a
+                            href='javascript:void 0'>镇江</a><a href='javascript:void 0'>衢州</a><a
+                            href='javascript:void 0'>龙岩</a><a href='javascript:void 0'>舟山</a><a
+                            href='javascript:void 0'>宿迁</a><a href='javascript:void 0'>丽水</a><a
+                            href='javascript:void 0'>江阴</a><a href='javascript:void 0'>常熟</a>
+                    </div>
+                </div>
+                <div class="line">
+                    <div class="line_left">华南</div>
+                    <div class="line_right">
+                        <a href='javascript:void 0'>深圳</a><a href='javascript:void 0'>广州</a><a href='javascript:void 0'>南宁</a><a
+                            href='javascript:void 0'>桂林</a><a
+                            href='javascript:void 0'>佛山</a><a href='javascript:void 0'>柳州</a><a
+                            href='javascript:void 0'>东莞</a><a href='javascript:void 0'>惠州</a><a
+                            href='javascript:void 0'>梧州</a><a href='javascript:void 0'>珠海</a><a
+                            href='javascript:void 0'>中山</a><a href='javascript:void 0'>玉林</a><a
+                            href='javascript:void 0'>江门</a><a href='javascript:void 0'>汕头</a><a
+                            href='javascript:void 0'>湛江</a><a href='javascript:void 0'>韶关</a><a
+                            href='javascript:void 0'>钦州</a>
+                    </div>
+                </div>
+                <div class="line">
+                    <div class="line_left">华中</div>
+                    <div class="line_right">
+                        <a href='javascript:void 0'>武汉</a><a href='javascript:void 0'>长沙</a><a
+                            href='javascript:void 0'>郑州</a><a href='javascript:void 0'>南昌</a><a
+                            href='javascript:void 0'>襄阳</a><a href='javascript:void 0'>张家界</a><a
+                            href='javascript:void 0'>洛阳</a><a href='javascript:void 0'>宜昌</a><a
+                            href='javascript:void 0'>南阳</a><a href='javascript:void 0'>常德</a><a
+                            href='javascript:void 0'>衡阳</a><a href='javascript:void 0'>新乡</a><a
+                            href='javascript:void 0'>岳阳</a><a href='javascript:void 0'>株洲</a><a
+                            href='javascript:void 0'>赣州</a><a href='javascript:void 0'>平顶山</a><a
+                            href='javascript:void 0'>九江</a><a href='javascript:void 0'>许昌</a><a
+                            href='javascript:void 0'>郴州</a><a href='javascript:void 0'>湘潭</a><a
+                            href='javascript:void 0'>上饶</a><a href='javascript:void 0'>宜春</a><a
+                            href='javascript:void 0'>荆州</a><a href='javascript:void 0'>黄冈</a><a
+                            href='javascript:void 0'>黄石</a><a href='javascript:void 0'>随州</a>
+                    </div>
+                </div>
+                <div class="line">
+                    <div class="line_left">西南</div>
+                    <div class="line_right">
+                        <a href='javascript:void 0'>成都</a><a href='javascript:void 0'>重庆</a><a
+                            href='javascript:void 0'>昆明</a><a href='javascript:void 0'>贵阳</a><a
+                            href='javascript:void 0'>遵义</a><a href='javascript:void 0'>绵阳</a><a
+                            href='javascript:void 0'>南充</a><a href='javascript:void 0'>德阳</a><a
+                            href='javascript:void 0'>乐山</a>
+                    </div>
+                </div>
+                <div class="line">
+                    <div class="line_left">西北</div>
+                    <div class="line_right">
+                        <a href='javascript:void 0'>西安</a><a href='javascript:void 0'>延安</a><a
+                            href='javascript:void 0'>兰州</a><a href='javascript:void 0'>银川</a><a
+                            href='javascript:void 0'>乌鲁木齐</a><a href='javascript:void 0'>宝鸡</a><a
+                            href='javascript:void 0'>渭南</a><a href='javascript:void 0'>汉中</a>
+                    </div>
+                </div>
+                <div class="line">
+                    <div class="line_left">东北</div>
+                    <div class="line_right">
+                        <a href='javascript:void 0'>沈阳</a><a href='javascript:void 0'>大连</a><a
+                            href='javascript:void 0'>哈尔滨</a><a href='javascript:void 0'>长春</a><a
+                            href='javascript:void 0'>大庆</a><a href='javascript:void 0'>吉林</a><a
+                            href='javascript:void 0'>鞍山</a><a href='javascript:void 0'>锦州</a><a
+                            href='javascript:void 0'>松原</a><a href='javascript:void 0'>营口</a><a
+                            href='javascript:void 0'>盘锦</a><a href='javascript:void 0'>抚顺</a><a
+                            href='javascript:void 0'>齐齐哈尔</a><a href='javascript:void 0'>牡丹江</a><a
+                            href='javascript:void 0'>通辽</a><a href='javascript:void 0'>四平</a><a
+                            href='javascript:void 0'>本溪</a><a href='javascript:void 0'>辽阳</a><a
+                            href='javascript:void 0'>丹东</a><a href='javascript:void 0'>通化</a><a
+                            href='javascript:void 0'>葫芦岛</a><a href='javascript:void 0'>阜新</a><a
+                            href='javascript:void 0'>延吉市</a>
+                    </div>
+                </div>
+
+            </div>
+            <div id="tagContent1" class="tagContent">
+                <div class="line">
+                    <div class="line_left">A</div>
+                    <div class="line_right"><a href='javascript:void 0'>鞍山</a><a href='javascript:void 0'>安庆</a><a
+                            href='javascript:void 0'>安阳</a><a href='javascript:void 0'>安陆市</a><a
+                            href='javascript:void 0'>安康</a><a href='javascript:void 0'>安国市</a><a
+                            href='javascript:void 0'>阿勒泰</a><a href='javascript:void 0'>阿克苏</a><a
+                            href='javascript:void 0'>阿拉善右旗</a><a href='javascript:void 0'>阿拉善左旗</a><a
+                            href='javascript:void 0'>阿尔山市</a><a href='javascript:void 0'>安顺</a><a
+                            href='javascript:void 0'>阿坝</a><a href='javascript:void 0'>阿里</a></div>
+                </div>
+                <div class="line">
+                    <div class="line_left">B</div>
+                    <div class="line_right"><a href='javascript:void 0'>北京</a><a href='javascript:void 0'>包头</a><a
+                            href='javascript:void 0'>蚌埠</a><a href='javascript:void 0'>保定</a><a
+                            href='javascript:void 0'>本溪</a><a href='javascript:void 0'>宝鸡</a><a
+                            href='javascript:void 0'>北海</a><a href='javascript:void 0'>北流市</a><a
+                            href='javascript:void 0'>霸州市</a><a href='javascript:void 0'>泊头市</a><a
+                            href='javascript:void 0'>博乐市</a><a href='javascript:void 0'>保山</a><a
+                            href='javascript:void 0'>巴彦淖尔</a><a href='javascript:void 0'>白山</a><a
+                            href='javascript:void 0'>毕节</a><a href='javascript:void 0'>百色</a></div>
+                </div>
+                <div class="line">
+                    <div class="line_left">C</div>
+                    <div class="line_right"><a href='javascript:void 0'>成都</a><a href='javascript:void 0'>重庆</a><a
+                            href='javascript:void 0'>长沙</a><a href='javascript:void 0'>长春</a><a
+                            href='javascript:void 0'>常州</a><a href='javascript:void 0'>常德</a><a
+                            href='javascript:void 0'>滁州</a><a href='javascript:void 0'>赤峰</a><a
+                            href='javascript:void 0'>长治</a><a href='javascript:void 0'>沧州</a><a
+                            href='javascript:void 0'>池州</a><a href='javascript:void 0'>承德</a><a
+                            href='javascript:void 0'>郴州</a><a href='javascript:void 0'>常宁市</a><a
+                            href='javascript:void 0'>嵊州市</a><a href='javascript:void 0'>朝阳</a><a
+                            href='javascript:void 0'>赤壁市</a><a href='javascript:void 0'>岑溪市</a><a
+                            href='javascript:void 0'>长乐市</a><a href='javascript:void 0'>长兴县</a><a
+                            href='javascript:void 0'>慈溪市</a><a href='javascript:void 0'>常熟</a><a
+                            href='javascript:void 0'>昌都</a><a href='javascript:void 0'>长海县</a></div>
+                </div>
+                <div class="line">
+                    <div class="line_left">D</div>
+                    <div class="line_right"><a href='javascript:void 0'>大连</a><a href='javascript:void 0'>大庆</a><a
+                            href='javascript:void 0'>大同</a><a href='javascript:void 0'>东莞</a><a
+                            href='javascript:void 0'>丹东</a><a href='javascript:void 0'>东营</a><a
+                            href='javascript:void 0'>达州</a><a href='javascript:void 0'>德阳</a><a
+                            href='javascript:void 0'>大理</a><a href='javascript:void 0'>东阳市</a><a
+                            href='javascript:void 0'>当阳市</a><a href='javascript:void 0'>丹江口市</a><a
+                            href='javascript:void 0'>大冶市</a><a href='javascript:void 0'>东方市</a><a
+                            href='javascript:void 0'>东兴市</a><a href='javascript:void 0'>德兴市</a><a
+                            href='javascript:void 0'>德清县</a><a href='javascript:void 0'>丹阳市</a><a
+                            href='javascript:void 0'>大丰市</a><a href='javascript:void 0'>东台市</a><a
+                            href='javascript:void 0'>定州市</a><a href='javascript:void 0'>敦煌市</a><a
+                            href='javascript:void 0'>大兴安岭</a><a href='javascript:void 0'>德宏</a><a
+                            href='javascript:void 0'>稻城县</a></div>
+                </div>
+                <div class="line">
+                    <div class="line_left">E</div>
+                    <div class="line_right"><a href='javascript:void 0'>鄂尔多斯</a><a href='javascript:void 0'>恩施</a><a
+                            href='javascript:void 0'>恩平市</a><a href='javascript:void 0'>额尔古纳市</a><a
+                            href='javascript:void 0'>额济纳旗</a><a href='javascript:void 0'>二连浩特市</a></div>
+                </div>
+                <div class="line">
+                    <div class="line_left">F</div>
+                    <div class="line_right"><a href='javascript:void 0'>福州</a><a href='javascript:void 0'>佛山</a><a
+                            href='javascript:void 0'>阜阳</a><a href='javascript:void 0'>抚顺</a><a
+                            href='javascript:void 0'>阜新</a><a href='javascript:void 0'>福鼎市</a><a
+                            href='javascript:void 0'>福安市</a><a href='javascript:void 0'>福清市</a><a
+                            href='javascript:void 0'>丰城市</a><a href='javascript:void 0'>奉化市</a><a
+                            href='javascript:void 0'>富阳区</a><a href='javascript:void 0'>丰镇市</a><a
+                            href='javascript:void 0'>抚远县</a></div>
+                </div>
+                <div class="line">
+                    <div class="line_left">G</div>
+                    <div class="line_right"><a href='javascript:void 0'>广州</a><a href='javascript:void 0'>贵阳</a><a
+                            href='javascript:void 0'>桂林</a><a href='javascript:void 0'>赣州</a><a
+                            href='javascript:void 0'>广元</a><a href='javascript:void 0'>广水市</a><a
+                            href='javascript:void 0'>桂平市</a><a href='javascript:void 0'>高州市</a><a
+                            href='javascript:void 0'>南雄市</a><a href='javascript:void 0'>贵溪市</a><a
+                            href='javascript:void 0'>高安市</a><a href='javascript:void 0'>根河市</a><a
+                            href='javascript:void 0'>高邮市</a><a href='javascript:void 0'>高碑店市</a><a
+                            href='javascript:void 0'>藁城市</a><a href='javascript:void 0'>格尔木市</a><a
+                            href='javascript:void 0'>固原</a><a href='javascript:void 0'>甘南</a><a
+                            href='javascript:void 0'>甘孜</a></div>
+                </div>
+            </div>
+            <div id="tagContent2" class="tagContent">
+                <div class="line">
+                    <div class="line_left">H</div>
+                    <div class="line_right"><a href='javascript:void 0'>杭州</a><a href='javascript:void 0'>合肥</a><a
+                            href='javascript:void 0'>海口</a><a href='javascript:void 0'>哈尔滨</a><a
+                            href='javascript:void 0'>呼和浩特</a><a href='javascript:void 0'>惠州</a><a
+                            href='javascript:void 0'>衡阳</a><a href='javascript:void 0'>淮南</a><a
+                            href='javascript:void 0'>淮安</a><a href='javascript:void 0'>湖州</a><a
+                            href='javascript:void 0'>黄山</a><a href='javascript:void 0'>邯郸</a><a
+                            href='javascript:void 0'>菏泽</a><a href='javascript:void 0'>汉中</a><a
+                            href='javascript:void 0'>黄冈</a><a href='javascript:void 0'>黄石</a><a
+                            href='javascript:void 0'>怀化</a><a href='javascript:void 0'>洪江市</a><a
+                            href='javascript:void 0'>汉川市</a><a href='javascript:void 0'>洪湖市</a><a
+                            href='javascript:void 0'>葫芦岛</a><a href='javascript:void 0'>合山市</a><a
+                            href='javascript:void 0'>化州市</a><a href='javascript:void 0'>鹤山市</a><a
+                            href='javascript:void 0'>海宁市</a><a href='javascript:void 0'>霍州市</a><a
+                            href='javascript:void 0'>侯马市</a><a href='javascript:void 0'>霍林郭勒市</a><a
+                            href='javascript:void 0'>海门市</a><a href='javascript:void 0'>河间市</a><a
+                            href='javascript:void 0'>黄骅市</a><a href='javascript:void 0'>哈密</a><a
+                            href='javascript:void 0'>和田</a><a href='javascript:void 0'>海西</a><a
+                            href='javascript:void 0'>海拉尔区</a><a href='javascript:void 0'>黑河</a><a
+                            href='javascript:void 0'>河池</a></div>
+                </div>
+                <div class="line">
+                    <div class="line_left">J</div>
+                    <div class="line_right"><a href='javascript:void 0'>济南</a><a href='javascript:void 0'>金华</a><a
+                            href='javascript:void 0'>吉林</a><a href='javascript:void 0'>锦州</a><a
+                            href='javascript:void 0'>嘉兴</a><a href='javascript:void 0'>江门</a><a
+                            href='javascript:void 0'>揭阳</a><a href='javascript:void 0'>嘉峪关</a><a
+                            href='javascript:void 0'>九江</a><a href='javascript:void 0'>济宁</a><a
+                            href='javascript:void 0'>晋城</a><a href='javascript:void 0'>焦作</a><a
+                            href='javascript:void 0'>荆州</a><a href='javascript:void 0'>吉安</a><a
+                            href='javascript:void 0'>景德镇</a><a href='javascript:void 0'>吉首市</a><a
+                            href='javascript:void 0'>津市市</a><a href='javascript:void 0'>江山市</a><a
+                            href='javascript:void 0'>佳木斯</a><a href='javascript:void 0'>建瓯市</a><a
+                            href='javascript:void 0'>晋江市</a><a href='javascript:void 0'>界首市</a><a
+                            href='javascript:void 0'>江阴</a><a href='javascript:void 0'>嘉善县</a><a
+                            href='javascript:void 0'>建德市</a><a href='javascript:void 0'>靖江市</a><a
+                            href='javascript:void 0'>句容市</a><a href='javascript:void 0'>金坛市</a><a
+                            href='javascript:void 0'>冀州市</a><a href='javascript:void 0'>晋州市</a><a
+                            href='javascript:void 0'>金昌</a><a href='javascript:void 0'>鸡西</a><a
+                            href='javascript:void 0'>九寨沟县</a><a href='javascript:void 0'>井冈山市</a></div>
+                </div>
+                <div class="line">
+                    <div class="line_left">K</div>
+                    <div class="line_right"><a href='javascript:void 0'>昆明</a><a href='javascript:void 0'>开封</a><a
+                            href='javascript:void 0'>克拉玛依</a><a href='javascript:void 0'>开平市</a><a
+                            href='javascript:void 0'>库车县</a><a href='javascript:void 0'>库尔勒市</a><a
+                            href='javascript:void 0'>喀什</a><a href='javascript:void 0'>凯里市</a><a
+                            href='javascript:void 0'>昆山市</a></div>
+                </div>
+                <div class="line">
+                    <div class="line_left">L</div>
+                    <div class="line_right"><a href='javascript:void 0'>洛阳</a><a href='javascript:void 0'>兰州</a><a
+                            href='javascript:void 0'>柳州</a><a href='javascript:void 0'>六盘水</a><a
+                            href='javascript:void 0'>丽江</a><a href='javascript:void 0'>辽阳</a><a
+                            href='javascript:void 0'>吕梁</a><a href='javascript:void 0'>连云港</a><a
+                            href='javascript:void 0'>临沂</a><a href='javascript:void 0'>龙岩</a><a
+                            href='javascript:void 0'>聊城</a><a href='javascript:void 0'>丽水</a><a
+                            href='javascript:void 0'>临汾</a><a href='javascript:void 0'>泸州</a><a
+                            href='javascript:void 0'>乐山</a><a href='javascript:void 0'>拉萨</a><a
+                            href='javascript:void 0'>涟源市</a><a href='javascript:void 0'>冷水江市</a><a
+                            href='javascript:void 0'>临湘市</a><a href='javascript:void 0'>临海市</a><a
+                            href='javascript:void 0'>耒阳市</a><a href='javascript:void 0'>兰溪市</a><a
+                            href='javascript:void 0'>醴陵市</a><a href='javascript:void 0'>浏阳市</a><a
+                            href='javascript:void 0'>利川市</a><a href='javascript:void 0'>老河口市</a><a
+                            href='javascript:void 0'>罗定市</a><a href='javascript:void 0'>连州市</a><a
+                            href='javascript:void 0'>陆丰市</a><a href='javascript:void 0'>雷州市</a><a
+                            href='javascript:void 0'>龙海市</a><a href='javascript:void 0'>乐平市</a><a
+                            href='javascript:void 0'>龙泉市</a><a href='javascript:void 0'>乐清市</a><a
+                            href='javascript:void 0'>临安市</a><a href='javascript:void 0'>溧阳市</a><a
+                            href='javascript:void 0'>鹿泉区</a><a href='javascript:void 0'>林芝</a><a
+                            href='javascript:void 0'>临沧</a></div>
+                </div>
+                <div class="line">
+                    <div class="line_left">M</div>
+                    <div class="line_right"><a href='javascript:void 0'>绵阳</a><a href='javascript:void 0'>牡丹江</a><a
+                            href='javascript:void 0'>马鞍山</a><a href='javascript:void 0'>梅州</a><a
+                            href='javascript:void 0'>汨罗市</a><a href='javascript:void 0'>麻城市</a><a
+                            href='javascript:void 0'>明光市</a><a href='javascript:void 0'>满洲里市</a><a
+                            href='javascript:void 0'>漠河县</a></div>
+                </div>
+                <div class="line">
+                    <div class="line_left">N</div>
+                    <div class="line_right"><a href='javascript:void 0'>南京</a><a href='javascript:void 0'>宁波</a><a
+                            href='javascript:void 0'>南宁</a><a href='javascript:void 0'>南昌</a><a
+                            href='javascript:void 0'>南阳</a><a href='javascript:void 0'>南通</a><a
+                            href='javascript:void 0'>宁德</a><a href='javascript:void 0'>南充</a><a
+                            href='javascript:void 0'>南安市</a><a href='javascript:void 0'>宁国市</a><a
+                            href='javascript:void 0'>宁海县</a><a href='javascript:void 0'>南宫市</a></div>
+                </div>
+            </div>
+            <div id="tagContent3" class="tagContent">
+                <div class="line">
+                    <div class="line_left">P</div>
+                    <div class="line_right"><a href='javascript:void 0'>盘锦</a><a href='javascript:void 0'>平顶山</a><a
+                            href='javascript:void 0'>莆田</a><a href='javascript:void 0'>攀枝花</a><a
+                            href='javascript:void 0'>凭祥市</a><a href='javascript:void 0'>普宁市</a><a
+                            href='javascript:void 0'>平湖市</a></div>
+                </div>
+                <div class="line">
+                    <div class="line_left">Q</div>
+                    <div class="line_right"><a href='javascript:void 0'>泉州</a><a href='javascript:void 0'>青岛</a><a
+                            href='javascript:void 0'>齐齐哈尔</a><a href='javascript:void 0'>秦皇岛</a><a
+                            href='javascript:void 0'>衢州</a><a href='javascript:void 0'>曲靖</a><a
+                            href='javascript:void 0'>钦州</a><a href='javascript:void 0'>潜江</a><a
+                            href='javascript:void 0'>琼海市</a><a href='javascript:void 0'>庆阳</a><a
+                            href='javascript:void 0'>启东市</a><a href='javascript:void 0'>迁安市</a><a
+                            href='javascript:void 0'>且末县</a></div>
+                </div>
+                <div class="line">
+                    <div class="line_left">R</div>
+                    <div class="line_right"><a href='javascript:void 0'>日照</a><a href='javascript:void 0'>瑞金市</a><a
+                            href='javascript:void 0'>瑞昌市</a><a href='javascript:void 0'>瑞安市</a><a
+                            href='javascript:void 0'>如皋市</a><a href='javascript:void 0'>任丘市</a><a
+                            href='javascript:void 0'>日喀则</a></div>
+                </div>
+                <div class="line">
+                    <div class="line_left">S</div>
+                    <div class="line_right"><a href='javascript:void 0'>上海</a><a href='javascript:void 0'>苏州</a><a
+                            href='javascript:void 0'>深圳</a><a href='javascript:void 0'>沈阳</a><a
+                            href='javascript:void 0'>三亚</a><a href='javascript:void 0'>石家庄</a><a
+                            href='javascript:void 0'>绍兴</a><a href='javascript:void 0'>松原</a><a
+                            href='javascript:void 0'>汕头</a><a href='javascript:void 0'>四平</a><a
+                            href='javascript:void 0'>韶关</a><a href='javascript:void 0'>商丘</a><a
+                            href='javascript:void 0'>宿迁</a><a href='javascript:void 0'>上饶</a><a
+                            href='javascript:void 0'>韶山市</a><a href='javascript:void 0'>上虞区</a><a
+                            href='javascript:void 0'>松滋市</a><a href='javascript:void 0'>石首市</a><a
+                            href='javascript:void 0'>四会市</a><a href='javascript:void 0'>邵武市</a><a
+                            href='javascript:void 0'>石狮市</a><a href='javascript:void 0'>随州</a><a
+                            href='javascript:void 0'>深州市</a><a href='javascript:void 0'>三河市</a><a
+                            href='javascript:void 0'>沙河市</a><a href='javascript:void 0'>思茅区</a><a
+                            href='javascript:void 0'>神农架</a></div>
+                </div>
+                <div class="line">
+                    <div class="line_left">T</div>
+                    <div class="line_right"><a href='javascript:void 0'>天津</a><a href='javascript:void 0'>太原</a><a
+                            href='javascript:void 0'>唐山</a><a href='javascript:void 0'>台州</a><a
+                            href='javascript:void 0'>通辽</a><a href='javascript:void 0'>泰州</a><a
+                            href='javascript:void 0'>泰安</a><a href='javascript:void 0'>天门</a><a
+                            href='javascript:void 0'>通化</a><a href='javascript:void 0'>台山市</a><a
+                            href='javascript:void 0'>天长市</a><a href='javascript:void 0'>桐城市</a><a
+                            href='javascript:void 0'>桐乡市</a><a href='javascript:void 0'>泰兴市</a><a
+                            href='javascript:void 0'>天水</a><a href='javascript:void 0'>通州市</a><a
+                            href='javascript:void 0'>太仓市</a><a href='javascript:void 0'>塔城</a><a
+                            href='javascript:void 0'>吐鲁番</a><a href='javascript:void 0'>腾冲县</a><a
+                            href='javascript:void 0'>铜仁</a></div>
+                </div>
+            </div>
+            <div id="tagContent4" class="tagContent">
+                <div class="line">
+                    <div class="line_left">W</div>
+                    <div class="line_right"><a href='javascript:void 0'>武汉</a><a href='javascript:void 0'>无锡</a><a
+                            href='javascript:void 0'>温州</a><a href='javascript:void 0'>芜湖</a><a
+                            href='javascript:void 0'>梧州</a><a href='javascript:void 0'>乌鲁木齐</a><a
+                            href='javascript:void 0'>潍坊</a><a href='javascript:void 0'>威海</a><a
+                            href='javascript:void 0'>渭南</a><a href='javascript:void 0'>武冈市</a><a
+                            href='javascript:void 0'>武穴市</a><a href='javascript:void 0'>万宁市</a><a
+                            href='javascript:void 0'>文昌市</a><a href='javascript:void 0'>五指山市</a><a
+                            href='javascript:void 0'>吴川市</a><a href='javascript:void 0'>武安市</a><a
+                            href='javascript:void 0'>温岭市</a><a href='javascript:void 0'>乌海</a><a
+                            href='javascript:void 0'>文山</a><a href='javascript:void 0'>武夷山市</a></div>
+                </div>
+                <div class="line">
+                    <div class="line_left">X</div>
+                    <div class="line_right"><a href='javascript:void 0'>西安</a><a href='javascript:void 0'>厦门</a><a
+                            href='javascript:void 0'>襄阳</a><a href='javascript:void 0'>徐州</a><a
+                            href='javascript:void 0'>新乡</a><a href='javascript:void 0'>咸阳</a><a
+                            href='javascript:void 0'>西双版纳</a><a href='javascript:void 0'>许昌</a><a
+                            href='javascript:void 0'>湘潭</a><a href='javascript:void 0'>西宁</a><a
+                            href='javascript:void 0'>孝感</a><a href='javascript:void 0'>仙桃</a><a
+                            href='javascript:void 0'>湘乡市</a><a href='javascript:void 0'>兴宁市</a><a
+                            href='javascript:void 0'>信宜市</a><a href='javascript:void 0'>西昌市</a><a
+                            href='javascript:void 0'>兴化市</a><a href='javascript:void 0'>新沂市</a><a
+                            href='javascript:void 0'>新乐市</a><a href='javascript:void 0'>辛集市</a><a
+                            href='javascript:void 0'>锡林浩特市</a><a href='javascript:void 0'>香格里拉县</a><a
+                            href='javascript:void 0'>兴义市</a></div>
+                </div>
+                <div class="line">
+                    <div class="line_left">Y</div>
+                    <div class="line_right"><a href='javascript:void 0'>义乌市</a><a href='javascript:void 0'>延安</a><a
+                            href='javascript:void 0'>宜昌</a><a href='javascript:void 0'>运城</a><a
+                            href='javascript:void 0'>扬州</a><a href='javascript:void 0'>营口</a><a
+                            href='javascript:void 0'>银川</a><a href='javascript:void 0'>盐城</a><a
+                            href='javascript:void 0'>榆林</a><a href='javascript:void 0'>岳阳</a><a
+                            href='javascript:void 0'>玉林</a><a href='javascript:void 0'>烟台</a><a
+                            href='javascript:void 0'>宜宾</a><a href='javascript:void 0'>宜春</a><a
+                            href='javascript:void 0'>永州</a><a href='javascript:void 0'>沅江市</a><a
+                            href='javascript:void 0'>永康市</a><a href='javascript:void 0'>应城市</a><a
+                            href='javascript:void 0'>宜城市</a><a href='javascript:void 0'>宜都市</a><a
+                            href='javascript:void 0'>宜州市</a><a href='javascript:void 0'>英德市</a><a
+                            href='javascript:void 0'>阳春市</a><a href='javascript:void 0'>永安市</a><a
+                            href='javascript:void 0'>延吉市</a><a href='javascript:void 0'>余姚市</a><a
+                            href='javascript:void 0'>扬中市</a><a href='javascript:void 0'>仪征市</a><a
+                            href='javascript:void 0'>牙克石市</a><a href='javascript:void 0'>宜兴市</a><a
+                            href='javascript:void 0'>伊宁县</a><a href='javascript:void 0'>玉树</a><a
+                            href='javascript:void 0'>伊春</a><a href='javascript:void 0'>玉环县</a></div>
+                </div>
+                <div class="line">
+                    <div class="line_left">Z</div>
+                    <div class="line_right"><a href='javascript:void 0'>郑州</a><a href='javascript:void 0'>遵义</a><a
+                            href='javascript:void 0'>张家界</a><a href='javascript:void 0'>珠海</a><a
+                            href='javascript:void 0'>中山</a><a href='javascript:void 0'>漳州</a><a
+                            href='javascript:void 0'>株洲</a><a href='javascript:void 0'>张家口</a><a
+                            href='javascript:void 0'>湛江</a><a href='javascript:void 0'>淄博</a><a
+                            href='javascript:void 0'>镇江</a><a href='javascript:void 0'>舟山</a><a
+                            href='javascript:void 0'>枣庄</a><a href='javascript:void 0'>张掖</a><a
+                            href='javascript:void 0'>资兴市</a><a href='javascript:void 0'>诸暨市</a><a
+                            href='javascript:void 0'>钟祥市</a><a href='javascript:void 0'>枣阳市</a><a
+                            href='javascript:void 0'>枝江市</a><a href='javascript:void 0'>廉江市</a><a
+                            href='javascript:void 0'>漳平县</a><a href='javascript:void 0'>樟树市</a><a
+                            href='javascript:void 0'>昭通</a><a href='javascript:void 0'>扎兰屯市</a><a
+                            href='javascript:void 0'>中卫</a><a href='javascript:void 0'>张家港市</a><a
+                            href='javascript:void 0'>涿州市</a><a href='javascript:void 0'>遵化市</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ul class="search_hot">
+    <li class="an_mo"><a href="javascript:;">三亚</a></li>
+    <li class="an_mo"><a href="javascript:;">泰国</a></li>
+    <li class="an_mo"><a href="javascript:;">日本</a></li>
+</ul>
+
+
+<div id="travelsRaiders" class="layer tour_box tour_box_youji layer_box">
+    <div class="tour_tit clearfix">
+        <div class="left_part">
+            <h2>游记攻略</h2>
+        </div>
+        <div class="right_part">
+            <span class="rt1"><i class="index_icon icon_horn"></i><a href="javascript:;">写游记赢大奖</a></span>
+            <span class="rt2"><i class="index_icon icon_report"></i><a href="javascript:;">发表游记</a></span>
+        </div>
+    </div>
+    <div class="layer_header">
+        <ul class="tabs">
+            <li class="current"><a href="javascript:;">度假美人记</a></li>
+            <li class="current"><a href="javascript:;">最美七月天</a></li>
+            <li class="current"><a href="javascript:;">结伴最精彩</a></li>
+            <li class="current"><a href="javascript:;">古城千年情</a></li>
+            <li class="current"><a href="javascript:;">牵手看世界</a></li>
+        </ul>
+        <div class="more">
+            <a href="javascript:;">更多游记 &gt;</a>
+        </div>
+    </div>
+    <ul class="layer_body_list datalazyload">
+        <li class="layer_body clearfix current_body" style="display: block;">
+            <div class="body_left youji_img">
+                <a href="" javascript:;>
+                    <img src="http://img.tuniucdn.com/u/mainpic/youji/ml.jpg">
+
+                    <div class="product_cover">
+                        <div class="product_tit">人间仙境马尔代夫莉莉岛</div>
+                        <dl class="product_more_mes clearfix">
+                            <dt class="comment_per">
+                                <img src="">
+                            </dt>
+                            <dd>
+                                <div class="tt1">
+                                    <span class="mr10"><i class="index_icon icon_go"></i>229617</span>|
+                                    <span class="ml10"><i class="index_icon icon_dian"></i>26</span>
+                                </div>
+                                <div class="tt2">怎么就回来了呢！</div>
+                            </dd>
+                        </dl>
+                    </div>
+                </a>
+            </div>
+            <div class="body_right">
+                <ul class="tab_list">
+                    <li class="product_item">
+                        <div class="youji_img">
+                            <a href="">
+                                <img src="http://img.tuniucdn.com/u/mainpic/youji/yxsb0627.jpeg">
+
+                                <div class="product_cover" style="bottom: -50px;">
+                                    <div class="product_tit">羊小哑盲游巴厘岛</div>
+                                    <dl class="product_more_mes clearfix">
+                                        <dt class="comment_per">
+                                            <img src="">
+                                        </dt>
+                                        <dd>
+                                            <div class="tt1">
+                                                <span class="mr10"><i class="index_icon icon_go"></i>226572</span>|
+                                                <span class="ml10"><i class="index_icon icon_dian"></i>22</span>
+                                            </div>
+                                            <div class="tt2">走进无边夏日中，六个菇娘的8天7晚行</div>
+                                        </dd>
+                                    </dl>
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+
+                    <li class="product_item">
+                        <div class="youji_img">
+                            <a href="">
+                                <img src="">
+
+                                <div class="product_cover" style="bottom: -50px;">
+                                    <div class="product_tit">7月写游记 奖励不停！</div>
+                                    <dl class="product_more_mes clearfix">
+                                        <dt class="comment_per">
+                                            <img src="">
+                                        </dt>
+                                        <dd>
+                                            <div class="tt1">
+                                                <span class="mr10"><i class="index_icon icon_go"></i>177313</span>|
+                                                <span class="ml10"><i class="index_icon icon_dian"></i>3</span>
+                                            </div>
+                                            <div class="tt2">获奖率超过50%的活动，赶紧来参与！</div>
+                                        </dd>
+                                    </dl>
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+
+                    <li class="product_item">
+                        <div class="youji_img">
+                            <a href="" target="_blank">
+                                <img src="">
+
+                                <div class="product_cover" style="bottom: -50px;">
+                                    <div class="product_tit">马代5天4夜海岛游</div>
+                                    <dl class="product_more_mes clearfix">
+                                        <dt class="comment_per">
+                                            <img src="">
+                                        </dt>
+                                        <dd>
+                                            <div class="tt1">
+                                                <span class="mr10"><i class="index_icon icon_go"></i>134202</span>|
+                                                <span class="ml10"><i class="index_icon icon_dian"></i>15</span>
+                                            </div>
+                                            <div class="tt2">蜜月圣地</div>
+                                        </dd>
+                                    </dl>
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+
+                    <li class="product_item">
+                        <div class="youji_img">
+                            <a href="">
+                                <img src="">
+
+                                <div class="product_cover">
+                                    <div class="product_tit">【免费旅行招募】0元台湾6日游</div>
+                                    <dl class="product_more_mes clearfix">
+                                        <dt class="comment_per">
+                                            <img src="">
+                                        </dt>
+                                        <dd>
+                                            <div class="tt1">
+                                                <span class="mr10"><i class="index_icon icon_go"></i>16017</span>|
+                                                <span class="ml10"><i class="index_icon icon_dian"></i>6</span>
+                                            </div>
+                                            <div class="tt2">大稻埕“玩出不同”</div>
+                                        </dd>
+                                    </dl>
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="youji_img body_link">
+                <a href="">
+                    <img src="">
+
+                    <div class="product_cover">
+                        <div class="product_tit">途牛地主全球招募中！</div>
+                        <dl class="product_more_mes clearfix">
+                            <dt class="comment_per">
+                                <img src="">
+                            </dt>
+                            <dd>
+                                <div class="tt1">
+                                    <span class="mr10"><i class="index_icon icon_go"></i>118147</span>|
+                                    <span class="ml10"><i class="index_icon icon_dian"></i>73</span>
+                                </div>
+                                <div class="tt2">超多奖励等你来拿！</div>
+                            </dd>
+                        </dl>
+                    </div>
+                </a>
+            </div>
+        </li>
+    </ul>
+</div>
+
+
+</body>
+</html>
+<script>
+    function showCity(ele) {
+        var cont = document.getElementById(ele);
+        var showCity = cont.getElementsByClassName('show_city')[0];
+        var tags = showCity.getElementsByClassName('tags')[0].getElementsByTagName('li');
+        var tagContent = showCity.getElementsByClassName('tagContent');
+        for (var i = 0; i < tags.length; i++) {
+            var tag = tags[i];
+            tag.index = i;
+            tag.onclick = function (e) {
+                for (var j = 0; j < tags.length; j++) {
+                    tags[j].className = '';
+                    tagContent[j].className = 'tagContent'
+                }
+                tags[this.index].className = 'liTag';
+                tagContent[this.index].className = 'tagContent selectTag';
+            }
+        }
+    }
+    showCity('header_center');
+
+
+</script>
